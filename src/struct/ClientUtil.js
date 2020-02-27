@@ -22,7 +22,7 @@ class ClientUtil {
      * @returns {User}
      */
     resolveUser(text, users, caseSensitive = false, wholeWord = false) {
-        return users.get(text) || users.find(user => this.checkUser(text, user, caseSensitive, wholeWord));
+        return users.cache.get(text) || users.cache.find(user => this.checkUser(text, user, caseSensitive, wholeWord));
     }
 
     /**
@@ -59,11 +59,11 @@ class ClientUtil {
 
         if (!wholeWord) {
             return username.includes(text)
-            || (username.includes(text.split('#')[0]) && discrim.includes(text.split('#')[1]));
+                || (username.includes(text.split('#')[0]) && discrim.includes(text.split('#')[1]));
         }
 
         return username === text
-        || (username === text.split('#')[0] && discrim === text.split('#')[1]);
+            || (username === text.split('#')[0] && discrim === text.split('#')[1]);
     }
 
     /**
@@ -113,13 +113,13 @@ class ClientUtil {
 
         if (!wholeWord) {
             return displayName.includes(text)
-            || username.includes(text)
-            || ((username.includes(text.split('#')[0]) || displayName.includes(text.split('#')[0])) && discrim.includes(text.split('#')[1]));
+                || username.includes(text)
+                || ((username.includes(text.split('#')[0]) || displayName.includes(text.split('#')[0])) && discrim.includes(text.split('#')[1]));
         }
 
         return displayName === text
-        || username === text
-        || ((username === text.split('#')[0] || displayName === text.split('#')[0]) && discrim === text.split('#')[1]);
+            || username === text
+            || ((username === text.split('#')[0] || displayName === text.split('#')[0]) && discrim === text.split('#')[1]);
     }
 
     /**
@@ -167,11 +167,11 @@ class ClientUtil {
 
         if (!wholeWord) {
             return name.includes(text)
-            || name.includes(text.replace(/^#/, ''));
+                || name.includes(text.replace(/^#/, ''));
         }
 
         return name === text
-        || name === text.replace(/^#/, '');
+            || name === text.replace(/^#/, '');
     }
 
     /**
@@ -219,11 +219,11 @@ class ClientUtil {
 
         if (!wholeWord) {
             return name.includes(text)
-            || name.includes(text.replace(/^@/, ''));
+                || name.includes(text.replace(/^@/, ''));
         }
 
         return name === text
-        || name === text.replace(/^@/, '');
+            || name === text.replace(/^@/, '');
     }
 
     /**
@@ -271,11 +271,11 @@ class ClientUtil {
 
         if (!wholeWord) {
             return name.includes(text)
-            || name.includes(text.replace(/:/, ''));
+                || name.includes(text.replace(/:/, ''));
         }
 
         return name === text
-        || name === text.replace(/:/, '');
+            || name === text.replace(/:/, '');
     }
 
     /**
